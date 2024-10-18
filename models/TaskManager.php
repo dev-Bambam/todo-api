@@ -12,7 +12,7 @@ function deleteTask($id, $pdo) {
     $sql = "DELETE FROM tasks WHERE id = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id);
-    $stmt->execute();
+    $stmt->execute(); 
 }
 
 // function to update a task

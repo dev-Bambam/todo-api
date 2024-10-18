@@ -1,7 +1,7 @@
 <?php
 // create a new task
-require '../model/TaskManager.php';
 require '../config/Database.php';
+require '../model/TaskManager.php';
 
 // create a new task
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

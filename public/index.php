@@ -1,7 +1,7 @@
 <?php
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        include './api/get.php';
+        include '../api/get.php';
         break;
     case 'POST':
         include './api/post.php';
