@@ -1,10 +1,14 @@
 <?php
+require '../config/Database.php';
 
 function createTask($title, $pdo) {
     $sql = "INSERT INTO tasks (title) VALUES (:title)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':title', $title);
     $stmt->execute();
+    echo json_encode([
+        "message" => 'todo created'
+    ]);
     return $pdo->lastInsertId();
 } 
 // function to delete a task
@@ -31,7 +35,18 @@ function getTasks($pdo) {
     $sql = "SELECT * FROM tasks";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode($stmt);
+    // check if there are tasks
+    if ($stmt->rowCount() === 0) {
+        echo json_encode([
+            "message" => "No tasks found"
+        ]);
+        return;
+    }else{
+        echo json_encode([
+            "message" => "Tasks found",
+            "tasks" => $tasks
+        ]);
+    }
 }

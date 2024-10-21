@@ -1,6 +1,6 @@
 <?php
 require '../config/Database.php';
-require '../model/TaskManager.php';
+require '../models/TaskManager.php';
 
 // get all todo
 if ($_SERVER['REQUEST_METHOD'] === 'UPDATE') {
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'UPDATE') {
     $id = $data['id']?? null;
     $task = $data['task'] ?? null;
 
-    if(isset($id, $task)){
+    if(isset($id, $task)){ 
         updateTask($id, $task, $pdo);
     }
 } 
